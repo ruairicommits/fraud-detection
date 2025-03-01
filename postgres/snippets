@@ -1,0 +1,7 @@
+CREATE DB:
+docker exec -i fraud-detection-postgres-1 psql -U admin -d transactions < setup.sql
+
+CONNECT TO DB:
+docker exec -it fraud-detection-postgres-1 psql -U admin -d transactions
+
+// DROP TABLE IF EXISTS public.transactions;

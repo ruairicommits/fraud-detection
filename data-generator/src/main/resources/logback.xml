@@ -1,0 +1,29 @@
+<configuration>
+
+    <!-- Save any and all Kafka logs to a file please -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/kafka.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set the root log level to INFO -->
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- Define logging level for Kafka-specific logs -->
+    <logger name="org.apache.kafka" level="WARN"> <!-- You can change this to INFO or ERROR -->
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <logger name="org.apache.kafka.clients" level="WARN"> <!-- You can change this to INFO or ERROR -->
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <logger name="org.apache.kafka.common" level="WARN"> <!-- You can change this to INFO or ERROR -->
+        <appender-ref ref="FILE"/>
+    </logger>
+
+</configuration>

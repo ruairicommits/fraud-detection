@@ -1,11 +1,14 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
-    id 'application'
+    id("org.jetbrains.kotlin.jvm") version "1.8.0"
+    id("application")
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
-        jvmTarget = "17"  // JDK version
+        jvmTarget = "17"
     }
 }
 
@@ -14,10 +17,19 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "org.json:json:20210307"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.json:json:20231013")
+    implementation("org.apache.kafka:kafka-clients:3.5.0")
+    implementation("org.slf4j:slf4j-api:2.0.0")
+    implementation("ch.qos.logback:logback-classic:1.4.5")
 }
 
 application {
-    mainClass.set("MainKt")  // Entrypoint
+    mainClass.set("MainKt")
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'MainKt'
+    }
 }
